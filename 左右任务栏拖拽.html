@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 300px;
+            border: 1px solid #000;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .box span {
+            display: inline-block;
+            width: 100%;
+            height: 30px;
+            background: #cff;
+            margin: 3px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box left"><span draggable='true'>1</span>
+        <span draggable='true'>2</span>
+        <span draggable='true'>3</span>
+        <span draggable='true'>4</span></div>
+    <div class="box right"></div>
+    <script>
+        var spns = document.querySelectorAll('.box span');
+        var left = document.querySelector('.left');
+        var right = document.querySelector('.right');
+        var draggable;
+        for (var i = 0; i < spns.length; i++) {
+            spns[i].ondragstart = function(e) {
+                draggable = e.target;
+            }
+        }
+
+        right.ondragover = function(e) {
+            e.preventDefault();
+        }
+        right.ondrop = function(e) {
+            this.append(draggable);
+        }
+        left.ondragover = function(e) {
+            e.preventDefault();
+        }
+        left.ondrop = function(e) {
+            this.append(draggable);
+        }
+    </script>
+
+</body>
+
+</html>

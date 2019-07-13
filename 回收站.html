@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+        
+        .list li {
+            list-style: none;
+            border: 1px solid red;
+            width: 500px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">回收站</div>
+    <ul class="list">
+        <li draggable='true'>111</li>
+        <li draggable='true'>222</li>
+        <li draggable='true'>333</li>
+        <li draggable='true'>444</li>
+        <li draggable='true'>555</li>
+    </ul>
+    <script>
+        var list = document.querySelector('.list');
+        var lis = document.querySelectorAll('.list li');
+        var box = document.querySelector('.box');
+        var draggable;
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].ondragstart = function(e) {
+                draggable = e.target;
+                console.log(e.target)
+            }
+        }
+        box.ondragover = function(e) {
+            e.preventDefault();
+        }
+        box.ondrop = function(e) {
+            list.removeChild(draggable);
+        }
+    </script>
+</body>
+
+</html>
